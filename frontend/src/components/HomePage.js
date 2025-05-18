@@ -33,7 +33,8 @@ const HomePage = () => {
         .then((data) => {
           const ordered = data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
           const transformed = ordered.map((msg, index) => {
-            const from = msg.number || msg.from.replace(/@.*$/, '')
+            const from = msg.number
+
             return {
               id: index,
               text: msg.body || "[mensaje vacío]",
@@ -78,11 +79,11 @@ const HomePage = () => {
 
           {messages.map((message) => (
             <div key={message.id} className={`message ${message.sender}`}>
-              <div className="message-content">
-                <div
-                  className="message-from"
-                  style={{ color: message.color }}
-                >
+              <div
+                className="message-content"
+                style={{ backgroundColor: message.color }}
+              >
+                <div className="message-from">
                   {message.from}
                 </div>
                 <div className="message-text">{message.text}</div>
@@ -90,6 +91,7 @@ const HomePage = () => {
               </div>
             </div>
           ))}
+
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ const saveMessageToDB = require('../services/saveMessageService');
 const getMessagesFromDB = require('../services/obtenerMensajes');
 
 
+
 router.post('/', async (req, res) => {
     try {
         const { from, body, timestamp } = req.body;
@@ -27,5 +28,6 @@ router.get('/obtener', async (req, res) => {
         res.status(500).json({ error: 'Error al obtener los mensajes' });
     }
 });
+
 
 module.exports = router;
